@@ -1,0 +1,53 @@
+.map-block {
+    top: 98px;
+    display: block;
+    padding: 10px 0;
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+    z-index: 10;
+    min-height: 55px;
+}
+body.wpv-scrolled .map-block {
+    top: 82px;
+}
+#submit_zip{
+	float: right;
+    height: 36px;
+    border: 0px;
+    padding: 10px;
+}
+.result-zip .wpv-grid {
+	background:#fff;
+	display:block;
+}
+
+#result-zip {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    z-index: 9;
+    background: rgba(255, 255, 255, 0.49);
+    top: 20%;
+	border: 1px solid #333;
+}
+#result-zip .bg-white{
+    background: #f3f3f3;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+#result-zip p{
+ word-wrap: break-word;
+ color:#000;
+}
+#result-zip .strong{
+ font-weight:bold;
+}
+
