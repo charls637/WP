@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Event Button Plugin
-Plugin URI: #
+Plugin URI: https://github.com/charls637/WP/tree/master/Plugins/event%20button%20plugin
 Description: Register Event Button
-Version: The Plugin's Version Number v1.0
+Version: 1.0
 Author: Charley Birondo
 Author URI: https://github.com/charls637
 License: GPL2

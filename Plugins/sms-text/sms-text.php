@@ -3,7 +3,7 @@
 Plugin Name: SMS Text Plugin
 Plugin URI: https://github.com/charls637/WP/tree/master/Plugins/sms-text
 Description: SMS Text
-Version: The Plugin's Version Number v1.0
+Version: 1.0
 Author: Charley Birondo
 Author URI: https://github.com/charls637
 License: GPL2
