@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: SMS Text Plugin
-Plugin URI: #
+Plugin URI: https://github.com/charls637/WP/tree/master/Plugins/sms-text
 Description: SMS Text
 Version: The Plugin's Version Number v1.0
 Author: Charley Birondo
