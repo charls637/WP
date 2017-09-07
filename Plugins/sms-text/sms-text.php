@@ -72,10 +72,12 @@ function sms_get_content($atts, $content = null){
     $string .= '            <label class="sr-only">Phone</label>';
     $string .= '            <p class="form-control-static"></p>';
     $string .= '          </div>';
-    $string .= '          <div class="form-group mx-sm-3">';
+    $string .= '          <div class="form-group mx-sm-3 phonegroup">';
     $string .= '            <label class="sr-only" for="phoneNumber">Phone</label>';
-    $string .= '            <input class="form-control" id="phoneNumber" placeholder="(_ _ _) -_ _ _ _" type="phone">';
+    $string .= '            <input class="form-control" id="areaCodeSender" placeholder="_ _ _" type="phone" maxlength="3" size="3" > - ';
+    $string .= '            <input class="form-control" id="phoneNumberSender" placeholder="_ _ _ _ _ _ _ ..." type="phone">';
     $string .= '            <input class="form-control" id="keywords" type="hidden" value="'.esc_attr($keywords).'">';
+    $string .= '            <input class="form-control" id="phoneNumberReceiver" type="hidden" value="'.esc_attr($phonenumber).'">';
     $string .= '          </div>';
     $string .= '          <button class="btn btn-primary submit-button" type="submit">Get Started</button>';
     $string .= '        </form>';
@@ -89,7 +91,35 @@ function sms_get_content($atts, $content = null){
 	return $string ;
 }
 // Register shorcode
-add_shortcode('sms_show_content', 'sms_get_content');
+add_shortcode('groundsource', 'sms_get_content');
+
+
+
+// Filter Functions with Hooks
+function sms_mce_button() {
+  // Check if user have permission
+  if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
+    return;
+  }
+  // Check if WYSIWYG is enabled
+  if ( 'true' == get_user_option( 'rich_editing' ) ) {
+    add_filter( 'mce_external_plugins', 'sms_tinymce_plugin' );
+    add_filter( 'mce_buttons', 'sms_register_mce_button' );
+  }
+}
+add_action('admin_head', 'sms_mce_button');
+
+// Function for new button
+function sms_tinymce_plugin( $plugin_array ) {
+  $plugin_array['sms_mce_button'] = plugins_url('js/btn.js', __FILE__);
+  return $plugin_array;
+}
+
+// Register new button in the editor
+function sms_register_mce_button( $buttons ) {
+  array_push( $buttons, 'sms_mce_button' );
+  return $buttons;
+}
 
 
 ?>

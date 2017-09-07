@@ -44,24 +44,49 @@ document.addEventListener('DOMContentLoaded', (function () {
     link.replaceAll();
 }), false);
 
+
+var container = document.getElementsByClassName("phonegroup")[0];
+container.onkeyup = function(e) {
+    var target = e.srcElement;
+    var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+    var myLength = target.value.length;
+    if (myLength >= maxLength) {
+        var next = target;
+        while (next = next.nextElementSibling) {
+            if (next == null)
+                break;
+            if (next.tagName.toLowerCase() == "input") {
+                next.focus();
+                break;
+            }
+        }
+    }
+}
+
 $(document).ready(function(){
 
    $(".submit-button").click(function(event){
         event.preventDefault();
-        phone_number=$('#phoneNumber').val();
+        phoneNumberReceiver=$('#phoneNumberReceiver').val();
+		
+        phoneNumberSender=$('#phoneNumberSender').val();
+        areaCodeSender=$('#areaCodeSender').val();
+		area_phone = areaCodeSender + '' + phoneNumberSender;
+		
         keywords=$('#keywords').val();
-        if (phone_number.length < 6){
+        if (area_phone.length < 6){
             alert("Invalid phone number")
             return;
         }
-        gs_url = "https://www.groundsource.co/surveys/sms/received/?MessageSid=1&To=63735&From=+" + "+1" +phone_number+"&Body="+keywords;
+        gs_url = "https://www.groundsource.co/surveys/sms/received/?MessageSid=1&To="+phoneNumberReceiver+"&From=+" + "+1" +area_phone+"&Body="+keywords;
         $.ajax({url:gs_url, 
             async: true, 
             beforeSend: function(msg){
                 $(".submit-button").prop('disabled', true);
               },
             success: function(result){
-                alert("Message sent!");
+               // alert(" Message sent! " +phoneNumberReceiver+ " "+area_phone+ " "+keywords);
+                alert(" Message sent! ");
 				location.reload();
             },
             error: function() {
@@ -72,3 +97,4 @@ $(document).ready(function(){
     });
 
 });
+
